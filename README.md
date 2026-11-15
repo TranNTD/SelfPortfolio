@@ -4,10 +4,24 @@ A responsive, beginner-friendly portfolio site made using **HTML, CSS, and vanil
 
 ## What is included?
 
-- `index.html`: All visible text and project descriptions; edit this to personalize your story.
+- `index.html`: English content and project descriptions, with `data-i18n` identifiers for translation.
+- `translations.js`: German text for each `data-i18n` identifier. Edit translations here.
 - `styles.css`: Visual design, colors, responsive layouts, dark/light mode.
-- `app.js`: Interactive filters, mobile menu, theme toggle, and optional email/LinkedIn links.
+- `app.js`: English/German switching, interactive filters, mobile menu, theme toggle, and optional email/LinkedIn links.
 - `assets/favicon.svg`: Small browser-tab icon.
+
+## English / German language switch
+
+Use the **EN / DE** buttons in the site header. English is the initial default. A visitor's choice is saved locally in the browser and restored on future visits. No translation service, backend, cookies, or API key is needed.
+
+To update the wording:
+
+1. Edit the English text directly in `index.html`.
+2. Edit the matching German entry in `translations.js`. Each translatable element has a `data-i18n` key such as `hero.heading`.
+3. Test by opening `index.html` and clicking **DE**, then **EN**. Check on mobile as well.
+4. Commit and push **all** updated files: `index.html`, `translations.js`, `app.js` and `styles.css`.
+
+If you add a new visible text element, add a unique `data-i18n="your.key"` attribute in `index.html` and a matching translation in `translations.js`. Some decorative Python code and standard technical keywords intentionally stay in English in both versions.
 
 ## Preview on your computer
 
@@ -42,7 +56,7 @@ git push -u origin main
 - [ ] Replace or remove any project you do not wish to make public.
 - [ ] Add URLs to your projects only once their GitHub repositories are ready.
 - [ ] Verify the GitHub profile URL (`https://github.com/TranNTD`) matches your account.
-- [ ] Add your public email in the top `CONTACT` object of `app.js` if you want an email button. A LinkedIn URL is prefilled from your public GitHub profile; verify it is correct.
+- [ ] Enter your own `email` and `linkedin` URLs in the top `CONTACT` object of `app.js` if you'd like buttons for those.
 - [ ] Optional: use your own photo, resume PDF, or custom domain. Don't publish private data or secrets.
 
 ## Suggested next improvements
@@ -50,7 +64,7 @@ git push -u origin main
 - Add a separate case study page for each project.
 - Add a downloadable, up-to-date public CV.
 - Add an automated GitHub Actions check for broken links / accessibility as a CI project.
-- Add a small bilingual English/German language switch.
+- Add a third language, such as Vietnamese, using the same translation system.
 - Add a small Python/ML project demo hosted on a separate service (GitHub Pages itself only serves static content).
 
 ## Official documentation
