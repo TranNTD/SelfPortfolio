@@ -1,6 +1,32 @@
 # Dung Tran · Personal Portfolio
 
-A responsive, beginner-friendly portfolio site made using **HTML, CSS, and vanilla JavaScript**. No paid hosting, backend, dependencies, or build step required.
+A responsive, beginner-friendly bilingual portfolio site made using **HTML, CSS, and vanilla JavaScript**. No paid hosting, backend, dependencies, or build step required.
+
+## November 2026 update: minimal design, skills, and languages
+
+This version **preserves the wording in the two user-supplied files** (`index(1).html` and `translations.js`), including the revised Union Investment portfolio-management internship entry and German descriptions. New sections were added without rewriting those entries.
+
+- **Appearance:** predominantly white/black with subtle blue and terracotta accents. Light mode is the default; the existing theme button switches to dark mode.
+- **Languages:** Vietnamese — Native, German — Advanced, English — Advanced. These are **editable draft descriptors, not verified CEFR or certificate levels**. Please review them before publication.
+- **Skills:** retains the original technical tool groups and adds a concise "How I work" row.
+- **English translations:** edit English copy inside `index.html`.
+- **German translations:** edit matching keys inside `translations.js`, especially `languages.de.level` and `languages.en.level`.
+
+To replace the draft descriptions with specific levels, change these English lines in `index.html`:
+
+```html
+<p data-i18n="languages.de.level">Advanced</p>
+<p data-i18n="languages.en.level">Advanced</p>
+```
+
+And the corresponding strings in `translations.js`:
+
+```js
+"languages.de.level": "Fortgeschritten",
+"languages.en.level": "Fortgeschritten",
+```
+
+You may use verified CEFR levels such as `B2` or `C1` if they accurately describe your ability.
 
 ## What is included?
 
@@ -52,7 +78,8 @@ git push -u origin main
 ## Things to customize BEFORE publishing
 
 - [ ] Verify the name and availability statement in `index.html`.
-- [ ] Verify research metrics and dates, descriptions, employer, education and titles. This draft is based on past discussions and should be reviewed before publishing.
+- [ ] Verify research metrics and dates, descriptions, employer, education and titles. Preserve your updates when editing.
+- [ ] Check the draft spoken-language levels (Advanced/Native) and change them to your actual levels before publishing.
 - [ ] Replace or remove any project you do not wish to make public.
 - [ ] Add URLs to your projects only once their GitHub repositories are ready.
 - [ ] Verify the GitHub profile URL (`https://github.com/TranNTD`) matches your account.

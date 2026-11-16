@@ -10,7 +10,7 @@ const root = document.documentElement;
 const themeToggle = document.getElementById("theme-toggle");
 let savedTheme;
 try { savedTheme = localStorage.getItem("portfolio-theme"); } catch (_) { savedTheme = null; }
-const defaultTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+const defaultTheme = "light"; // Minimal black-and-white design by default.
 root.dataset.theme = savedTheme === "dark" || savedTheme === "light" ? savedTheme : defaultTheme;
 themeToggle.addEventListener("click", () => {
   const next = root.dataset.theme === "dark" ? "light" : "dark";
