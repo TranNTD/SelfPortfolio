@@ -1,7 +1,7 @@
 // OPTIONAL CONTACT LINKS: Edit these values, then commit and push to GitHub.
 // Leave a value empty to hide its button. Never put private passwords/API keys here.
 const CONTACT = {
-  email: "", // Example: "hello@yourdomain.com"
+  email: "tranngocthuydung98@gmail.com",
   linkedin: "https://www.linkedin.com/in/ngoc-thuy-dung-tran-353462213/" // Your public profile
 };
 
@@ -33,28 +33,54 @@ mainNav.querySelectorAll("a").forEach(link => link.addEventListener("click", () 
   menuButton.setAttribute("aria-label", root.lang === "de" ? "Menü öffnen" : "Open menu");
 }));
 
-// Project filters
+// Project filters and progressive disclosure
 const filters = [...document.querySelectorAll(".filter")];
 const cards = [...document.querySelectorAll(".project-card")];
 const filterStatus = document.getElementById("filter-status");
+const projectToggle = document.getElementById("project-toggle");
+const PROJECT_PREVIEW_COUNT = 4;
+let selectedProjectFilter = "all";
+let projectsExpanded = false;
+
+const matchingProjects = () => cards.filter(card =>
+  selectedProjectFilter === "all" || card.dataset.category === selectedProjectFilter
+);
 const updateFilterStatus = () => {
   const visible = cards.filter(card => !card.hidden).length;
+  const total = matchingProjects().length;
   filterStatus.textContent = root.lang === "de"
-    ? `${visible} ${visible === 1 ? "Projekt" : "Projekte"} angezeigt`
-    : `${visible} project${visible === 1 ? "" : "s"} displayed`;
+    ? `${visible} von ${total} Projekten angezeigt`
+    : `${visible} of ${total} projects displayed`;
+  projectToggle.textContent = root.lang === "de"
+    ? (projectsExpanded ? "Weniger anzeigen" : "Mehr anzeigen")
+    : (projectsExpanded ? "Show less" : "Show more");
+  projectToggle.setAttribute("aria-expanded", String(projectsExpanded));
+  projectToggle.hidden = total <= PROJECT_PREVIEW_COUNT;
+};
+const renderProjects = () => {
+  const matching = matchingProjects();
+  const visible = new Set(projectsExpanded ? matching : matching.slice(0, PROJECT_PREVIEW_COUNT));
+  cards.forEach(card => { card.hidden = !visible.has(card); });
+  updateFilterStatus();
 };
 filters.forEach(filter => filter.addEventListener("click", () => {
-  const choice = filter.dataset.filter;
+  selectedProjectFilter = filter.dataset.filter;
+  projectsExpanded = false;
   filters.forEach(item => {
     const selected = item === filter;
     item.classList.toggle("active", selected);
     item.setAttribute("aria-pressed", String(selected));
   });
-  cards.forEach(card => {
-    card.hidden = choice !== "all" && card.dataset.category !== choice;
-  });
-  updateFilterStatus();
+  renderProjects();
 }));
+projectToggle.addEventListener("click", () => {
+  projectsExpanded = !projectsExpanded;
+  renderProjects();
+  if (!projectsExpanded && projectToggle.getBoundingClientRect().top < 0) {
+    document.getElementById("projects").scrollIntoView({ block: "start", behavior: "instant" });
+  }
+});
+renderProjects();
 
 // Contact: hidden unless configured
 const email = CONTACT.email.trim();
